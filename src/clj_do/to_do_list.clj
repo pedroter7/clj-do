@@ -6,9 +6,16 @@
 (defn make "Makes a to-do-list"
   [title]
   {:post [(s/valid? ::to-do-list %)]}
-  {:title title})
+  (let [title (if (and (string? title)
+                       (>
+                        (count title)
+                        0))
+                title
+                "To-Dos")]
+    {:title title}))
+
+(defn add-task [to-do-list task] nil)
 
 (comment
-  (make "Hello")
+  (add-task (make nil) nil)
   :rcf)
-
